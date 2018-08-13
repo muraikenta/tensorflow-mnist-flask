@@ -1,5 +1,5 @@
 lib
 bin
 include
-results
+test_results
 __pycache__
