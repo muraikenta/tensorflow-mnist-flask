@@ -2,3 +2,4 @@ lib
 bin
 include
 results
+__pycache__

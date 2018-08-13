@@ -3,12 +3,15 @@ import tensorflow as tf
 from tensorflow import keras
 
 # Helper libraries
-from PIL import Image
 import pdb
 from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
-# %matplotlib inline
+
+# my modules
+from my_test_images import my_test_images, my_test_lables
+
+hoge()
 
 print('tensorflow: v', tf.__version__)
 
@@ -18,18 +21,7 @@ fashion_mnist = keras.datasets.fashion_mnist
 
 train_images = train_images / 255.0
 test_images = test_images / 255.0
-
-target_images = 255 - np.array([
-    np.array( Image.open('test_images/sneaker1.jpg').resize((28, 28)).convert('L') ),
-    np.array( Image.open('test_images/t-shirt1.jpg').resize((28, 28)).convert('L') ),
-    np.array( Image.open('test_images/sneaker2.jpg').resize((28, 28)).convert('L') ),
-    np.array( Image.open('test_images/trouser1.jpg').resize((28, 28)).convert('L') ),
-    np.array( Image.open('test_images/pullover1.jpg').resize((28, 28)).convert('L') ),
-    np.array( Image.open('test_images/bag1.jpg').resize((28, 28)).convert('L') ),
-])
-target_images = target_images / 255.0
-
-target_lables = np.array([9, 0, 7, 1, 2, 8])
+my_test_images = my_test_images / 255.0
 
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
@@ -77,5 +69,5 @@ def predict_test_images(images, labels):
     plt.savefig('results/{}.png'.format(datetime.now().strftime('%s')))
     plt.show()
 
-predict_test_images(target_images, target_lables)
+predict_test_images(my_test_images, my_test_lables)
 # predict_test_images(test_images, test_labels)
