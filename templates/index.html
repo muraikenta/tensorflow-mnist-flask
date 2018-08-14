@@ -13,25 +13,33 @@
       <h1 class="text-center">判別さん</h1>
       <form method="post" action="/" enctype="multipart/form-data" class="text-center">
         <input type="file" name="file" style="margin: 30px auto;">
-        <input type="submit" value="送信" class="btn btn-primary">
+        <input type="submit" value="送信" class="btn btn-primary" style="margin-bottom: 40px;">
       </form>
       <div class="text-center">
         {% if image_source %}
           <img src="data:image/png;base64,{{ image_source }}" style="max-width: 50%; vertical-align: top;">
         {% else %}
-          <img src="https://tensorflow.org/images/fashion-mnist-sprite.png" style="margin-top: 50px;">
+          <img src="https://tensorflow.org/images/fashion-mnist-sprite.png">
         {% endif %}
-        <div style="display: inline-block;">
-          {% if prediction %}
-            {% for (k, v) in prediction %}
-              {% if loop.index0 == 0 %}
-                <p style="color: green;">{{k}}: {{v * 100}}%<p>
-              {% else %}
-                <p>{{k}}: {{v * 100}}%<p>
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-        </div>
+        <!-- <div style="display: inline-block;"> -->
+        {% if prediction %}
+          <table class="table" style="max-width: 50%; margin: 40px auto;">
+            <tbody>
+              {% for (k, v) in prediction %}
+                <tr>
+                {% if loop.index0 == 0 %}
+                  <td style="color: green;">{{k}}</td>
+                  <td style="color: green;">{{v * 100}}%</td>
+                {% else %}
+                  <td>{{k}}</td>
+                  <td>{{v * 100}}%</td>
+                {% endif %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        <!-- </div> -->
       </div>
     </div>
   </body>
