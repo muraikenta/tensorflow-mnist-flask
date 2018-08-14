@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">判別さん</h1>
+      <form method="post" action="/" enctype="multipart/form-data" class="text-center">
+        <input type="file" name="file" style="margin: 30px auto;">
+        <input type="submit" value="送信" class="btn btn-primary">
+      </form>
+      <div class="text-center">
+        {% if image_source %}
+          <img src="data:image/png;base64,{{ image_source }}" style="max-width: 50%; vertical-align: top;">
+        {% else %}
+          <img src="https://tensorflow.org/images/fashion-mnist-sprite.png" style="margin-top: 50px;">
+        {% endif %}
+        <div style="display: inline-block;">
+          {% if prediction %}
+            {% for (k, v) in prediction %}
+              {% if loop.index0 == 0 %}
+                <p style="color: green;">{{k}}: {{v * 100}}%<p>
+              {% else %}
+                <p>{{k}}: {{v * 100}}%<p>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
